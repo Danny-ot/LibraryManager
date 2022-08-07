@@ -1,0 +1,31 @@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Liberian"))
+        {
+            <li class="nav-item">
+                @Html.ActionLink("Admin" , "Index" , "Admin" , null , new {@class = "nav-link , text-dark"})
+            </li>
+        }
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                    @Html.ActionLink(User.Identity.Name , "Manage" , "Account" , null , new {@class = "nav-link , text-dark"})
+            </li>
+            <li class="nav-item">
+                @using (Html.BeginForm("Logout" , "Account" , null , FormMethod.Post , null , new {@class = "form-inline"})) {
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                }
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Register" , "Register" , "Account" , null , new {@class = "nav-link , text-dark"})
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Login" , "Login" , "Account" , null , new {@class = "nav-link text-dark"})
+            </li>
+        </ul>
+    }
