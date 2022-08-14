@@ -1,22 +1,69 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
-                <div class="container">
-                    @Html.ActionLink("Library" , "Index" , "Home" , null , new {@class = "navbar-brand logo h1"})
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                            @Html.ActionLink("Home" , "Index" , "Home" , null , new {@class = "nav-link text-dark"})
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Books" , "Index" , "Books" , null , new {@class = "nav-link text-dark"})
-                            </li>
-                        </ul>
-                        @await Html.PartialAsync("_Login")
-                    </div>
-                </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light" aria-label="Fourth navbar example">
+        <div class="container-fluid">
+            @Html.ActionLink("Library" , "Index" , "Home" , null , new {@class = "navbar-brand logo h1"})
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+                aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home" , "Index" , "Home" , null , new {@class = "nav-link text-dark"})
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Books" , "Index" , "Books" , null , new {@class = "nav-link text-dark"})
+                    </li>
+                    @if(User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="nav-item">
+                                @Html.ActionLink("Checkouts" , "Index" , "Checkouts" , null , new {@class = "nav-link , text-dark"})
+                        </li>
+                    }
+                    @if (User.IsInRole("Liberian"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Authors" , "Index" , "Authors" , null , new {@class = "nav-link , text-dark"})
+                        </li>
+                        @* <li class="nav-item">
+                            @Html.ActionLink("Admin" , "Index" , "Admin" , null , new {@class = "nav-link , text-dark"})
+                        </li> *@
+                    }
+                </ul>
+                @await Html.PartialAsync("_Login")
+            </div>
+        </div>
     </nav>
+
+    @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+        <div class="container">
+            @Html.ActionLink("Library" , "Index" , "Home" , null , new {@class = "navbar-brand logo h1"})
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home" , "Index" , "Home" , null , new {@class = "nav-link text-dark"})
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Books" , "Index" , "Books" , null , new {@class = "nav-link text-dark"})
+                    </li>
+                    @if (User.IsInRole("Liberian"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Admin" , "Index" , "Admin" , null , new {@class = "nav-link , text-dark"})
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Authors" , "Index" , "Authors" , null , new {@class = "nav-link , text-dark"})
+                        </li>
+                    }
+                </ul>
+                @await Html.PartialAsync("_Login")
+            </div>
+        </div>
+    </nav> *@
 </header>
