@@ -1,0 +1,95 @@
+@{
+    ViewData["Title"] = "Books";
+    Layout = "_Layout";
+}
+
+@model List<Library.Models.Book>;
+
+@using Library.Models;
+<div class="books-div">
+    <div class="container">
+        <h3 class="text-center mt-4">Here are the available books</h3>
+        <div class="search-div">
+            @using (Html.BeginForm("Search", "Books", FormMethod.Post))
+            {
+                <input type="text" name="bookName">
+                <input type="submit" value="Search" class="btn btn-dark">
+            }
+        </div>
+        <div class="table-responsive mt-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Book</th>
+                        <th scope="col">Authors</th>
+                        <th scope="col">Copies</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                @if (Model.Count != 0)
+                {
+                    <tbody>
+                        @foreach (Book book in Model)
+                        {
+                            <tr>
+                                <td>@book.Name</td>
+                                <td>
+                                    @foreach (var authorBook in book.AuthorBooks)
+                                    {
+                                        <span>@Html.ActionLink(authorBook.Author.Name , "Details" , "Authors" , new {id = authorBook.AuthorId} , new {@class = "text-primary"}) ,</span>
+                                    }
+                                </td>
+                                <td>@book.Copies</td>
+                                <td>
+                                    @Html.ActionLink("Details" , "Details" , new {id = @book.BookId})
+                                    @if(User.IsInRole("Liberian"))
+                                    {
+                                        <span> |</span>
+                                        @Html.ActionLink("Edit" , "Edit" , new {id = @book.BookId})
+                                        <span> |</span>
+                                        <btn data-bs-target="#Book_@book.BookId" data-bs-toggle = "modal" class="btn text-primary">Delete</btn>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+        @if (User.IsInRole("Liberian"))
+        {
+            <p class="text-end mt-2">@Html.ActionLink("New" , "Create" , null , null , new {@class = "btn btn-outline-dark"})</p>
+        }
+    </div>
+</div>
+
+@if(Model.Count != 0)
+{
+    @foreach (var book in Model)
+    {
+        <div class="modal fade" id="Book_@book.BookId" tabindex="-1"
+                            aria-labelledby="BookLabel_@book.BookId" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="BookLabel_@book.BookId">Delete @book.Name</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Clicking delete will delete @book.Name Permanently</p>
+                                            </div>`
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                                @using (Html.BeginForm("Delete", "Books"))
+                                                {
+                                                    @Html.Hidden("bookId" , @book.BookId);
+                                                    <input type="submit" class="btn btn-outline-dark" value="Delete">
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    }
+}
