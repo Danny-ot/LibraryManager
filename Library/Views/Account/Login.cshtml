@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_FormLayout";
+}
+
+@using Library.ViewModels;
+
+@using System.Security.Claims;
+
+@model LoginViewModel;
+
+<div class="login-div">
+    <h1 class="text-center">Login</h1>
+    @Html.ValidationSummary(false , "" , new {@class = "text-danger"})
+    @Html.DisplayText(ViewBag.ErrorMessage)
+    @using (Html.BeginForm("Login" , "Account"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email , new {@class = "form-label"})
+            @Html.TextBoxFor(model => model.Email , new {type = "email"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password , new {@class = "form-label"})
+            @Html.PasswordFor(model => model.Password)
+        </div>
+        <div class="text-center">
+            <input value="Submit" type="submit" class="btn btn-dark">
+        </div>
+        <p class="text-end">@Html.ActionLink("Don't have account?" , "Register" , "Account")</p>
+    }
+</div>
