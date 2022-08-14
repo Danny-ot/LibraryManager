@@ -1,0 +1,196 @@
+
+/************************** Resets  ************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color : hsl(240, 51%, 46%);
+    --navabar-height : 86.98px;
+}
+
+/************************** Defaults ************************/
+nav.bg-light {
+    background-color: hsl(0, 0%, 93%) !important;
+}
+
+a {
+    text-decoration: none;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-body > .form-right input:not(input[type = "submit"]){
+    border: none;
+    border-bottom: 1px solid #000;
+    height: 1.2rem;
+    outline: none;
+}
+
+.form-body > .form-right input:not(input[type = "submit"]):focus {
+    border: none;
+    border-bottom: 1px solid #000;
+    background: #fff;
+}
+
+input[type = "submit"]:hover{
+    color: #fff;
+}
+/*************************** Layout Styles ********************/
+.nav-link {
+    font-size: 1rem;
+    padding: 0 .5rem !important;
+    margin-top: .5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    padding-top: .6rem;
+    margin-bottom: 2px !important;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+    padding: 1.3rem;
+}
+
+.form-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-body > .form-left {
+    background: linear-gradient(hsla(0, 0%, 0%, 0.705) , rgba(0, 0, 0, 0.61)) , url(../img/splash.png);
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.form-body > .form-left > a {
+    color: #fff;
+    font-size: 3.5rem;
+    transition: .35s;
+}
+
+.form-body > .form-left > a:hover {
+    color: var(--primary-color);
+}
+
+.form-body > .form-right {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/************************** Home Styles **********************/
+.home-main {
+    height: calc(100vh - var(--navabar-height));
+    width: 100%;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(hsla(0, 0%, 0%, 0.705) , rgba(0, 0, 0, 0.61)) , url(../img/splash.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.home-main h1 {
+    font-size: 4vw;
+}
+
+@media(max-width: 800px) {
+    .home-main h1 {
+        font-size: 6vw;
+    }
+}
+
+/*********************** Register Form **********************/
+.register-div , .login-div{
+    padding: 0 3rem;
+}
+
+.register-div > h1 {
+    font-size: 2rem;
+}
+
+
+/*********************** Login Form **********************/
+.login-div {
+    width: 100%;
+}
+
+.login-div > h1 {
+    padding-bottom: 2rem;
+}
+
+.login-div .form-group {
+    margin-bottom: 3rem !important;
+}
+
+.login-div input:not(input[type = "submit"]) {
+    height: 3rem;
+}
+
+/*********************** Search Styles **********************/
+.search-div form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-div form > input {
+    margin-right: .6rem;
+    margin-block: 1rem;
+    border: 2px solid #808080;
+    border-radius: .3rem;
+}
+
+.search-div form > input[type = "text"] {
+    width: 16rem;
+    padding-inline: .7rem;
+}
+
+/***************************** Create Form Styles ********************/
+.create-form {
+    width: 100%;
+    height: calc(100vh - var(--navabar-height));
+    padding: 3rem 1rem 0 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.create-form > div {
+    width: 35rem;
+}
+
+/****************************** Details Styles ********************/
+.grid-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    
+}
+
+.grid-item {
+    padding: 2rem;
+    width: 15rem;
+    background-color: hsl(0, 0%, 80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
